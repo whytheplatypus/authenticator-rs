@@ -2039,6 +2039,7 @@ pub mod test {
     use crate::ctap2::server::{
         Alg, PublicKeyCredentialParameters, RelyingParty, RelyingPartyData, User,
     };
+    use ctap2::commands::RequestCtap2;
     use crate::transport::hid::HIDDevice;
     use crate::transport::platform::device::Device;
     use crate::transport::platform::TestCase;
@@ -2071,7 +2072,7 @@ pub mod test {
             None,
         );
         let mut device = Device::new(TestCase::WriteError).unwrap();
-        let reply = req.handle_response(&mut device, &MAKE_CREDENTIALS_SAMPLE_RESPONSE[..]);
+        let reply = req.handle_response_ctap2(&mut device, &MAKE_CREDENTIALS_SAMPLE_RESPONSE[..]);
 
         assert!(reply.is_ok());
         let (reply, _) = reply.unwrap();
