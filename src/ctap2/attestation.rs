@@ -512,6 +512,9 @@ impl Serialize for AttestationObject {
                 map.serialize_entry(&1, &"packed")?;
                 map.serialize_entry(&3, v)?;
             }
+            AttestationStatement::FidoU2F(ref v) => {
+                map.serialize_entry(&1, &"u2f")?;
+            }
         }
 
         map.end()
