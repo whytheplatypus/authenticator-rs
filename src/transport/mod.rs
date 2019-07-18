@@ -100,7 +100,6 @@ pub enum Error {
     UnexpectedInitReplyLen,
     NonceMismatch,
     DeviceNotInitialized,
-    #[cfg(not(test))]
     DeviceNotSupported,
     UnsupportedCommand,
     IO(Option<path::PathBuf>, io::Error),
@@ -152,7 +151,6 @@ impl fmt::Display for Error {
             Error::NonceMismatch => write!(f, "Error: Nonce mismatch"),
             Error::DeviceError => write!(f, "Error: device returned error"),
             Error::DeviceNotInitialized => write!(f, "Error: using not initiliazed device"),
-            #[cfg(not(test))]
             Error::DeviceNotSupported => {
                 write!(f, "Error: requested operation is not available on device")
             }
@@ -176,7 +174,6 @@ impl ErrorT for Error {
             Error::NonceMismatch => "Error: Nonce mismatch",
             Error::DeviceError => "Error: device returned error",
             Error::DeviceNotInitialized => "Error: using not initiliazed device",
-            #[cfg(not(test))]
             Error::DeviceNotSupported => "Error: requested operation is not available on device",
             Error::UnsupportedCommand => "Error: command is not supported on this device",
             Error::IO(_, ref e) => e.description(),
