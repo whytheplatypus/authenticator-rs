@@ -462,7 +462,7 @@ mod fido2simple {
                     // device version
                     reply.write_all(b"\x00\x00\x2a")?;
                     // capabilities
-                    reply.write_all(&[Capability::CBOR.bits()])?;
+                    reply.write_all(&[Capability::CBOR.bits() | Capability::NMSG.bits()])?;
                     reply.set_position(0);
 
                     let next_cid = Some([255u8; 4]);
